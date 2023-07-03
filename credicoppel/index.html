@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CrediCoppel</title>
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <style>
+    #product-image {
+      width: 250px;
+      height: 250px;
+    }
+    body{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <img srcset="logo.jpg" src="" alt="10">
+  <h1 class="bg-primary text-white p-3">CrediCoppel</h1>
+
+  <label class="" for="product-select">Productos con descuento:</label><br>
+  <select class="form-control" id="product-select" onchange="mostrarProducto()">
+    <option value="" data-image="pantalla.jpg" data-price="2000">TV</option>
+    <option value="producto2" data-image="moto.jpg" data-price="10000">Moto</option>
+    <option value="producto3" data-image="sala.jpg" data-price="1200">Sala</option>
+    <option value="producto4" data-image="comedor.jpg" data-price="3200">Comedor</option>
+    <option value="producto5" data-image="labadora.jpg" data-price="5000">Lavadora</option>
+  </select>
+
+  <br>
+
+  <img id="product-image" src="pantalla.jpg" alt="Imagen del producto">
+  <p class="bg-warning text-dark p-2" id="product-price">Precio $1000</p>
+  <label id="product-quantity-label" class="bg-info text-white p-2">Cantidad: 1</label>
+  <input type="range" id="product-quantity" min="1" max="10" value="1" onchange="mostrarProducto()">
+
+  <script>
+    function mostrarProducto() {
+      var select = document.getElementById("product-select");
+      var imagen = document.getElementById("product-image");
+      var precio = document.getElementById("product-price");
+      var cantidad = document.getElementById("product-quantity");
+
+      var opcionSeleccionada = select.options[select.selectedIndex];
+      var urlImagen = opcionSeleccionada.getAttribute("data-image");
+      var productPrice = opcionSeleccionada.getAttribute("data-price");
+
+      var cantidadPiezas = cantidad.value;
+
+      imagen.src = urlImagen;
+      precio.innerText = "Precio: $" + (productPrice * cantidadPiezas);
+
+      var cantidadLabel = document.getElementById("product-quantity-label");
+      cantidadLabel.innerText = "Cantidad " + cantidadPiezas + " piezas";
+    }
+  </script>
+</body>
+</html>
